@@ -5,15 +5,16 @@ import os
 import plotly.express as px
 from dotenv import load_dotenv
 
-
 load_dotenv('/home/mystic31/WC2026-Soccer-Analytics/.env')
+DATABASE_URL = st.secrets.get("DATABASE_URL") or os.getenv("DATABASE_URL")
 
 # ------------------------------------------------------------
 # Block 1: Database Connection (cached)
 # ------------------------------------------------------------
 @st.cache_resource
 def get_connection():
-    return psycopg2.connect(os.getenv('DATABASE_URL'))
+    url = st.secrets.get("DATABASE_URL") or os.getenv("DATABASE_URL")
+    return psycopg2.connect(url)
 
 def run_query(query, params=None):
     conn = get_connection()
