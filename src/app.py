@@ -174,9 +174,10 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 ])
 
 # ---- Tab 1 ----
-st.caption("Ranked by total attempts at goal + goals scored across all matches played.")
+
 
 with tab1:
+    st.caption("Ranked by total attempts at goal + goals scored across all matches played.")
     st.subheader("Top 10 Most Dangerous Players")
     df = get_dangerous_players()
     if not df.empty:
@@ -213,8 +214,9 @@ with tab1:
         st.info("No data available.")
 
 # ---- Tab 2 ----
-st.caption("Ranked by average distance covered per match in km. Reflects physical output per 90 minutes.")
+
 with tab2:
+    st.caption("Ranked by average distance covered per match in km. Reflects physical output per 90 minutes.")
     st.subheader("Top 10 Endurance Players")
     df = get_endurance_players()
     if not df.empty:
@@ -247,8 +249,9 @@ with tab2:
         st.info("No data available.")
 
 # ---- Tab 3 ----
-st.caption("Ranked by single highest recorded sprint speed across all matches. One peak effort counts.")
+
 with tab3:
+    st.caption("Ranked by single highest recorded sprint speed across all matches. One peak effort counts.")
     st.subheader("Top 10 Speed Stars")
     df = get_speed_stars()
     if not df.empty:
@@ -314,8 +317,9 @@ with tab3:
         #st.info("No data available.")
 
 # ---- Tab 4 ----
-st.caption("Ranked by average pass completion %. Minimum 200 total attempts to exclude low-volume players.")
+
 with tab4:
+    st.caption("Ranked by average pass completion %. Minimum 200 total attempts to exclude low-volume players.")
     st.subheader("Top 10 Standout Passers")
     df = get_standout_passer()
     if not df.empty:
@@ -348,8 +352,8 @@ with tab4:
         st.info("No data available.")
 
 # ---- Tab 5 ----
-st.caption("Ranked by combined tackles won + interceptions + blocks + clearances. Reflects total defensive volume.")
 with tab5:
+    st.caption("Ranked by combined tackles won + interceptions + blocks + clearances. Reflects total defensive volume.")
     st.subheader("Top 10 Standout Defenders")
     df = get_standout_defender()
     if not df.empty:
@@ -363,7 +367,7 @@ with tab5:
                 value=top['player_name'],
                 delta=f"{delta:.0f} pts ahead of 2nd"
             )
-         with col_chart:
+        with col_chart:
             fig = px.bar(
                 df,
                 x=['total_tackles_won', 'total_interceptions', 'total_blocks', 'total_clearances'],
