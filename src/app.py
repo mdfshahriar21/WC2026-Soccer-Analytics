@@ -174,6 +174,8 @@ tab1, tab2, tab3, tab4, tab5 = st.tabs([
 ])
 
 # ---- Tab 1 ----
+st.caption("Ranked by total attempts at goal + goals scored across all matches played.")
+
 with tab1:
     st.subheader("Top 10 Most Dangerous Players")
     df = get_dangerous_players()
@@ -191,12 +193,16 @@ with tab1:
         with col_chart:
             fig = px.bar(
                 df,
-                x='danger_score',
+                x=['total_goals', 'total_chances'],
                 y='player_name',
-                color='team',
                 orientation='h',
-                title='Danger Score (Attempts + Goals)',
-                labels={'danger_score': 'Score', 'player_name': 'Player'},
+                title='Danger Score (Goals + Attempts at Goal)',
+                labels={'value': 'Count', 'player_name': 'Player', 'variable': 'Type'},
+                barmode='stack',
+                color_discrete_map={
+                    'total_goals': '#FFD700',
+                    'total_chances': '#4A90D9'
+                },
                 height=500
             )
             fig.update_layout(yaxis={'categoryorder': 'total ascending'})
@@ -207,6 +213,7 @@ with tab1:
         st.info("No data available.")
 
 # ---- Tab 2 ----
+st.caption("Ranked by average distance covered per match in km. Reflects physical output per 90 minutes.")
 with tab2:
     st.subheader("Top 10 Endurance Players")
     df = get_endurance_players()
@@ -240,6 +247,7 @@ with tab2:
         st.info("No data available.")
 
 # ---- Tab 3 ----
+st.caption("Ranked by single highest recorded sprint speed across all matches. One peak effort counts.")
 with tab3:
     st.subheader("Top 10 Speed Stars")
     df = get_speed_stars()
@@ -306,6 +314,7 @@ with tab3:
         #st.info("No data available.")
 
 # ---- Tab 4 ----
+st.caption("Ranked by average pass completion %. Minimum 200 total attempts to exclude low-volume players.")
 with tab4:
     st.subheader("Top 10 Standout Passers")
     df = get_standout_passer()
@@ -339,6 +348,7 @@ with tab4:
         st.info("No data available.")
 
 # ---- Tab 5 ----
+st.caption("Ranked by combined tackles won + interceptions + blocks + clearances. Reflects total defensive volume.")
 with tab5:
     st.subheader("Top 10 Standout Defenders")
     df = get_standout_defender()
@@ -353,15 +363,21 @@ with tab5:
                 value=top['player_name'],
                 delta=f"{delta:.0f} pts ahead of 2nd"
             )
-        with col_chart:
+         with col_chart:
             fig = px.bar(
                 df,
-                x='defensive_score',
+                x=['total_tackles_won', 'total_interceptions', 'total_blocks', 'total_clearances'],
                 y='player_name',
-                color='team',
                 orientation='h',
                 title='Defensive Score (Tackles Won + Interceptions + Blocks + Clearances)',
-                labels={'defensive_score': 'Score', 'player_name': 'Player'},
+                labels={'value': 'Count', 'player_name': 'Player', 'variable': 'Action'},
+                barmode='stack',
+                color_discrete_map={
+                    'total_tackles_won': '#e74c3c',
+                    'total_interceptions': '#3498db',
+                    'total_blocks': '#2ecc71',
+                    'total_clearances': '#f39c12'
+                },
                 height=500
             )
             fig.update_layout(yaxis={'categoryorder': 'total ascending'})

@@ -600,10 +600,11 @@ if __name__ == "__main__":
     # Folder containing all match report PDFs
     FOLDER_PATH = "data"
     DEBUG = False
+
     # Clear CSV export at start of each full run
     csv_path = "data/player_stats_export.csv"
     if os.path.exists(csv_path):
-    os.remove(csv_path)
+        os.remove(csv_path)
 
     conn = psycopg2.connect(os.getenv('DATABASE_URL'))
 
