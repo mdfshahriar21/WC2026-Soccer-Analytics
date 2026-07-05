@@ -105,7 +105,7 @@ def get_speed_stars(limit=10):
 # ------------------------------------------------------------
 # Block 6: GK Saves (using blocks as proxy)
 # ------------------------------------------------------------
-def get_gk_saves(limit=10):
+#def get_gk_saves(limit=10):
     query = """
         SELECT 
             player_name,
@@ -166,7 +166,7 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
     "⚡ Most Dangerous",
     "🏃 Endurance King", 
     "💨 Speed Star",
-    "🧤 GK Saves",
+    #"🧤 GK Saves",
     "🎯 Standout Passer",
     "🛡️ Standout Defender"
 ])
@@ -271,37 +271,37 @@ with tab3:
         st.info("No data available.")
 
 # ---- Tab 4 ----
-with tab4:
-    st.subheader("Top 10 Goalkeeper/Defensive Actions")
-    df = get_gk_saves()
-    if not df.empty:
-        col_chart, col_metric = st.columns([3, 1])
-        with col_metric:
-            top = df.iloc[0]
-            second = df.iloc[1] if len(df) > 1 else None
-            delta = top['defensive_actions'] - second['defensive_actions'] if second is not None else 0.0
-            st.metric(
-                label="🧤 Most Defensive Actions",
-                value=top['player_name'],
-                delta=f"{delta:.0f} actions ahead of 2nd"
-            )
-        with col_chart:
-            fig = px.bar(
-                df,
-                x='defensive_actions',
-                y='player_name',
-                color='team',
-                orientation='h',
-                title='Blocks + Interceptions',
-                labels={'defensive_actions': 'Actions', 'player_name': 'Player'},
-                height=500
-            )
-            fig.update_layout(yaxis={'categoryorder': 'total ascending'})
-            st.plotly_chart(fig, width='stretch')
-        with st.expander("Show raw data"):
-            st.dataframe(df, width='stretch')
-    else:
-        st.info("No data available.")
+#with tab4:
+    #st.subheader("Top 10 Goalkeeper/Defensive Actions")
+    #df = get_gk_saves()
+    #if not df.empty:
+        #col_chart, col_metric = st.columns([3, 1])
+        #with col_metric:
+            #top = df.iloc[0]
+            #second = df.iloc[1] if len(df) > 1 else None
+            #delta = top['defensive_actions'] - second['defensive_actions'] if second is not None else 0.0
+            #st.metric(
+                #label="🧤 Most Defensive Actions",
+                #value=top['player_name'],
+                #delta=f"{delta:.0f} actions ahead of 2nd"
+            #)
+        #with col_chart:
+            #fig = px.bar(
+                #df,
+                #x='defensive_actions',
+                #y='player_name',
+                #color='team',
+                #orientation='h',
+                #title='Blocks + Interceptions',
+                #labels={'defensive_actions': 'Actions', 'player_name': 'Player'},
+                #height=500
+            #)
+            #fig.update_layout(yaxis={'categoryorder': 'total ascending'})
+            #st.plotly_chart(fig, width='stretch')
+        #with st.expander("Show raw data"):
+            #st.dataframe(df, width='stretch')
+    #else:
+        #st.info("No data available.")
 
 # ---- Tab 5 ----
 with tab5:
