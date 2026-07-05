@@ -164,7 +164,7 @@ def get_standout_defender(limit=10):
 # ------------------------------------------------------------
 # Tabs
 # ------------------------------------------------------------
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "⚡ Most Dangerous",
     "🏃 Endurance King", 
     "💨 Speed Star",
