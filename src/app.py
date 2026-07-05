@@ -305,8 +305,8 @@ with tab3:
     #else:
         #st.info("No data available.")
 
-# ---- Tab 5 ----
-with tab5:
+# ---- Tab 4 ----
+with tab4:
     st.subheader("Top 10 Standout Passers")
     df = get_standout_passer()
     if not df.empty:
@@ -338,8 +338,8 @@ with tab5:
     else:
         st.info("No data available.")
 
-# ---- Tab 6 ----
-with tab6:
+# ---- Tab 5 ----
+with tab5:
     st.subheader("Top 10 Standout Defenders")
     df = get_standout_defender()
     if not df.empty:
