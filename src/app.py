@@ -204,7 +204,8 @@ with tab1:
                     'total_goals': '#FFD700',
                     'total_chances': '#4A90D9'
                 },
-                height=500
+                height=500,
+                text_auto=True
             )
             fig.update_layout(yaxis={'categoryorder': 'total ascending'})
             st.plotly_chart(fig, width='stretch')
@@ -239,7 +240,8 @@ with tab2:
                 orientation='h',
                 title='Average Distance Covered per Match (km)',
                 labels={'avg_distance_per_match_km': 'Avg Distance (km)', 'player_name': 'Player'},
-                height=500
+                height=500,
+                text_auto=True
             )
             fig.update_layout(yaxis={'categoryorder': 'total ascending'})
             st.plotly_chart(fig, width='stretch')
@@ -274,7 +276,8 @@ with tab3:
                 orientation='h',
                 title='Top Speed Reached (km/h)',
                 labels={'top_speed_kmh': 'Speed (km/h)', 'player_name': 'Player'},
-                height=500
+                height=500,
+                text_auto=True
             )
             fig.update_layout(yaxis={'categoryorder': 'total ascending'})
             st.plotly_chart(fig, width='stretch')
@@ -342,7 +345,8 @@ with tab4:
                 orientation='h',
                 title='Average Pass Completion %',
                 labels={'avg_completion_pct': 'Completion %', 'player_name': 'Player'},
-                height=500
+                height=500,
+                text_auto=True
             )
             fig.update_layout(yaxis={'categoryorder': 'total ascending'})
             st.plotly_chart(fig, width='stretch')
@@ -382,7 +386,8 @@ with tab5:
                     'total_blocks': '#2ecc71',
                     'total_clearances': '#f39c12'
                 },
-                height=500
+                height=500,
+                text_auto=True
             )
             fig.update_layout(yaxis={'categoryorder': 'total ascending'})
             st.plotly_chart(fig, width='stretch')
