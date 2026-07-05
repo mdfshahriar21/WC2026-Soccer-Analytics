@@ -128,12 +128,14 @@ def get_standout_passer(limit=10):
         SELECT 
             player_name,
             team,
-            AVG(pass_completion_pct) as avg_completion_pct,
-            SUM(passes_completed) as total_passes_completed
+            ROUND(AVG(pass_completion_pct)::numeric, 1) as avg_completion_pct,
+            SUM(passes_attempted) as total_passes_attempted,
+            SUM(passes_completed) as total_passes_completed,
+            COUNT(DISTINCT match_code) as matches_played
         FROM player_stats
-        WHERE passes_attempted > 0
+        WHERE passes_attempted >= 20
         GROUP BY player_name, team
-        HAVING COUNT(*) >= 2   -- at least 2 matches to avoid outliers
+        HAVING SUM(passes_attempted) >= 200
         ORDER BY avg_completion_pct DESC
         LIMIT %s
     """

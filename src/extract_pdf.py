@@ -490,6 +490,10 @@ def process_one_pdf(pdf_path):
             else:
                 print(f"{col}: column missing!")
 
+        # Save running CSV export
+        csv_path = "data/player_stats_export.csv"
+        df.to_csv(csv_path, mode='a', header=not os.path.exists(csv_path), index=False)
+
         return final_df, meta
 # ====================================================
 # LOAD TO POSTGRES – with match upsert
@@ -596,6 +600,10 @@ if __name__ == "__main__":
     # Folder containing all match report PDFs
     FOLDER_PATH = "data"
     DEBUG = False
+    # Clear CSV export at start of each full run
+    csv_path = "data/player_stats_export.csv"
+    if os.path.exists(csv_path):
+    os.remove(csv_path)
 
     conn = psycopg2.connect(os.getenv('DATABASE_URL'))
 
